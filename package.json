@@ -1,0 +1,7 @@
+{
+  "name": "aws-sam-test",
+  "version": "1.0.0",
+  "description": "A small SAM test",
+  "author": "Juha Luoto",
+  "private": true
+}
