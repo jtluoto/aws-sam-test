@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "A small SAM test",
   "author": "Juha Luoto",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "uuidv1": "^1.6.14"
+  }
 }

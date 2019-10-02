@@ -2,6 +2,8 @@
 
 const doc = require('dynamodb-doc');
 const dynamo = new doc.DynamoDB();
+const uuidv1 = require('uuid/v1')
+const TABLE_NAME = 'aws-sam-test-message'
 
 exports.hello = (event, context, callback) => {
 
@@ -14,17 +16,13 @@ exports.hello = (event, context, callback) => {
     });
 
     switch (event.httpMethod) {
-        case 'DELETE':
-            dynamo.deleteItem(JSON.parse(event.body), done);
-            break;
         case 'GET':
-            dynamo.scan({ TableName: 'aws-sam-test-message' }, done);
+            dynamo.scan({ TableName: TABLE_NAME }, done);
             break;
         case 'POST':
-            dynamo.putItem(JSON.parse(event.body), done);
-            break;
-        case 'PUT':
-            dynamo.updateItem(JSON.parse(event.body), done);
+            let item = JSON.parse(event.body);
+            item.id = uuidv1();
+            dynamo.putItem({ TableName: TABLE_NAME, Item: item }, done);
             break;
         default:
             done(new Error(`Unsupported method "${event.httpMethod}"`));

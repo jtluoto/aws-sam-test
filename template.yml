@@ -25,7 +25,7 @@ Resources:
   messageTable:
     Type: 'AWS::DynamoDB::Table'
     Properties:
-      TableName: messageTable
+      TableName: aws-sam-test-message
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
